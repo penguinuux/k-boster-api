@@ -21,18 +21,13 @@ export class Dvd {
   @Column()
   duration: string;
 
-  @ManyToMany(() => Cart, {
-    eager: true,
-  })
-  @JoinColumn()
+  @ManyToMany(() => Cart, (cart) => cart.dvds)
   carts: Cart[];
 
-  @ManyToMany(() => Order, {
-    eager: true,
-  })
-  @JoinColumn()
+  @ManyToMany(() => Order, (order) => order.dvds)
   orders: Order[];
 
   @OneToOne(() => DvdStock, (dvdStock) => dvdStock.dvd)
+  @JoinColumn()
   dvd_stock: DvdStock;
 }

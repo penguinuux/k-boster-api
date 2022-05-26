@@ -6,7 +6,7 @@ import {
   ManyToOne,
   ManyToMany,
   JoinColumn,
-  UpdateDateColumn,
+  JoinTable,
 } from "typeorm";
 import { Dvd } from "./Dvd";
 import { User } from "./User";
@@ -22,10 +22,11 @@ export class Order {
   @CreateDateColumn()
   created_at?: Date;
 
-  @ManyToOne(() => User, { nullable: true, eager: true })
+  @ManyToOne(() => User, (user) => user.orders)
+  @JoinColumn()
   user: User;
 
-  @ManyToMany(() => Dvd, { nullable: true, eager: true })
-  @JoinColumn()
+  @ManyToMany(() => Dvd, (dvd) => dvd.orders, { nullable: true })
+  @JoinTable()
   dvds: Dvd[];
 }

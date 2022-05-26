@@ -5,6 +5,8 @@ import {
   Column,
   OneToOne,
   OneToMany,
+  JoinColumn,
+  JoinTable,
 } from "typeorm";
 import { Cart } from "./Cart";
 import { Order } from "./Order";

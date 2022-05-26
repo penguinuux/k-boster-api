@@ -4,6 +4,7 @@ import {
   Column,
   OneToOne,
   ManyToMany,
+  JoinTable,
   JoinColumn,
 } from "typeorm";
 import { Dvd } from "./Dvd";
@@ -21,9 +22,10 @@ export class Cart {
   total: number;
 
   @OneToOne(() => User, (user) => user.cart, { nullable: true })
+  @JoinColumn()
   user: User;
 
-  @ManyToMany(() => Dvd, { nullable: true, eager: true })
-  @JoinColumn()
+  @ManyToMany(() => Dvd, (dvd) => dvd.carts, { nullable: true })
+  @JoinTable()
   dvds: Dvd[];
 }
