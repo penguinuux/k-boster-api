@@ -19,7 +19,7 @@ const userLoginService = async ({ validated }: Request): Promise<string> => {
   }
 
   const token: string = jwt.sign(
-    { email: validated.email },
+    { email: validated.email, is_admin: user.is_admin },
     process.env.SECRET_KEY,
     { expiresIn: process.env.EXPIRES_IN }
   );
