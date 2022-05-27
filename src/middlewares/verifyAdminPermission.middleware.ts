@@ -6,11 +6,7 @@ const verifyAdminPermission = async (
   res: Response,
   next: NextFunction
 ) => {
-  const decodedUser = await userRepository.findOne({
-    email: req.decoded.email,
-  });
-
-  if (decodedUser.is_admin) {
+  if (req.decoded.is_admin) {
     next();
   } else {
     return res.status(403).json({ message: "Missing admin permission." });
