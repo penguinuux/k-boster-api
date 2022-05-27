@@ -1,8 +1,21 @@
 import { Router } from "express";
+import {
+  userCreateController,
+  userLoginController,
+} from "../controllers/users";
+import { validateSchema, verifyUserExists } from "../middlewares";
+import { createUserSchema, userLoginSchema } from "../schemas/user";
 
-const userRouter = Router();
+const routes = Router();
 
-userRouter.post("/login");
-userRouter.post("/register");
+export const userRoutes = () => {
+  routes.post("/login", validateSchema(userLoginSchema), userLoginController);
+  routes.post(
+    "/register",
+    validateSchema(createUserSchema),
+    verifyUserExists,
+    userCreateController
+  );
 
-export default userRouter;
+  return routes;
+};

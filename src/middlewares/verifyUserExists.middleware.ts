@@ -7,7 +7,7 @@ const verifyUserExists = async (
   next: NextFunction
 ) => {
   const foundUser = await userRepository.findOne({
-    email: req.body.email,
+    email: req.validated.email,
   });
 
   if (foundUser) {
