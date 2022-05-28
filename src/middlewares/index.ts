@@ -4,6 +4,7 @@ import appErrorMiddleware from "./appError.middleware";
 import verifyAdminPermission from "./verifyAdminPermission.middleware";
 import verifyToken from "./verifyToken.middleware";
 import verifyCreateAdminUserPermission from "./verifyCreateAdminUserPermission.middleware";
+import verifyDvdUnicity from "./verifyDvdUnicity";
 
 export {
   validateSchema,
@@ -12,4 +13,5 @@ export {
   verifyAdminPermission,
   verifyToken,
   verifyCreateAdminUserPermission,
+  verifyDvdUnicity,
 };

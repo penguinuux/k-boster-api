@@ -3,6 +3,7 @@ import { dvdCreateController, dvdListController } from "../controllers/dvd";
 import {
   validateSchema,
   verifyAdminPermission,
+  verifyDvdUnicity,
   verifyToken,
 } from "../middlewares";
 import { createDvdSchema } from "../schemas/dvd";
@@ -15,6 +16,7 @@ export const dvdRoutes = () => {
     validateSchema(createDvdSchema),
     verifyToken,
     verifyAdminPermission,
+    verifyDvdUnicity,
     dvdCreateController
   );
   routes.get("/", dvdListController);
