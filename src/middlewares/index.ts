@@ -5,6 +5,7 @@ import verifyAdminPermission from "./verifyAdminPermission.middleware";
 import verifyToken from "./verifyToken.middleware";
 import verifyCreateAdminUserPermission from "./verifyCreateAdminUserPermission.middleware";
 import verifyDvdUnicity from "./verifyDvdUnicity";
+import verifyDvdExists from "./verifyDvdExists.middleware";
 
 export {
   validateSchema,
@@ -14,4 +15,5 @@ export {
   verifyToken,
   verifyCreateAdminUserPermission,
   verifyDvdUnicity,
+  verifyDvdExists,
 };

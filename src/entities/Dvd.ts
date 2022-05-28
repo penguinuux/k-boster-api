@@ -24,7 +24,7 @@ export class Dvd {
   @ManyToMany(() => Cart, (cart) => cart.dvds)
   carts: Cart[];
 
-  @ManyToMany(() => Order, (order) => order.dvds)
+  @ManyToMany(() => Order, (order) => order.dvds, { eager: true })
   orders: Order[];
 
   @OneToOne(() => DvdStock, (dvdStock) => dvdStock.dvd, { eager: true })

@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { dvdCreateController, dvdListController } from "../controllers/dvd";
+import {
+  dvdBuyController,
+  dvdCreateController,
+  dvdListController,
+} from "../controllers/dvd";
 import {
   validateSchema,
   verifyAdminPermission,
+  verifyDvdExists,
   verifyDvdUnicity,
   verifyToken,
 } from "../middlewares";
@@ -19,6 +24,7 @@ export const dvdRoutes = () => {
     verifyDvdUnicity,
     dvdCreateController
   );
+  routes.post("/buy/:dvdId", verifyToken, verifyDvdExists, dvdBuyController);
   routes.get("/", dvdListController);
 
   return routes;

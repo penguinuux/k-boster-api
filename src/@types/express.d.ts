@@ -1,4 +1,4 @@
-import { User } from "../entities";
+import { Dvd, User } from "../entities";
 import { IDvdCreate } from "../interfaces";
 
 declare global {
@@ -6,6 +6,7 @@ declare global {
     interface Request {
       validated: User | IDvdCreate;
       decoded: Partial<User>;
+      dvdToBuy: Dvd;
     }
   }
 }

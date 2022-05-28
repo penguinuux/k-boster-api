@@ -28,7 +28,7 @@ export class User {
   @Column({ default: false })
   is_admin?: boolean;
 
-  @OneToOne(() => Cart, (cart) => cart.user)
+  @OneToOne(() => Cart, (cart) => cart.user, { eager: true })
   cart: Cart;
 
   @OneToMany(() => Order, (order) => order.user)
