@@ -21,17 +21,15 @@ const serializedOrderCreateSchema = yup
   })
   .required();
 
-const serializedOrderListSchema = yup.object().shape({
-  orders: yup
-    .array()
-    .of(
-      yup.object().shape({
-        order_id: yup.string().required(),
-        total: yup.number().required(),
-        created_at: yup.date().required(),
-      })
-    )
-    .required(),
-});
+const serializedOrderListSchema = yup
+  .array()
+  .of(
+    yup.object().shape({
+      order_id: yup.string().required(),
+      total: yup.number().required(),
+      created_at: yup.date().required(),
+    })
+  )
+  .required();
 
 export { serializedOrderCreateSchema, serializedOrderListSchema };

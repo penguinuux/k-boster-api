@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  userCartController,
   userCreateController,
   userLoginController,
   userOrdersListController,
@@ -20,6 +21,7 @@ export const userRoutes = () => {
     userCreateController
   );
   routes.get("/orders", verifyToken, userOrdersListController);
+  routes.get("/cart", verifyToken, userCartController);
 
   return routes;
 };
