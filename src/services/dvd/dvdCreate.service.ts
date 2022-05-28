@@ -3,6 +3,7 @@ import { AssertsShape } from "yup/lib/object";
 import { Dvd } from "../../entities";
 import { IDvdCreate } from "../../interfaces";
 import { dvdRepository, dvdStockRepository } from "../../repositories";
+import { serializedCreatedDvdSchema } from "../../schemas/dvd";
 
 const dvdCreateService = async ({
   validated,
@@ -12,13 +13,18 @@ const dvdCreateService = async ({
   const registeredDvds: Dvd[] = [];
 
   for (let dvd of dvds) {
-    const { price, quantity } = dvd;
+    const { price, quantity, ...newDvd } = dvd;
     const dvdStock = await dvdStockRepository.save({ price, quantity });
-    const newDvd = await dvdRepository.save({ ...dvd, dvd_stock: dvdStock });
-    registeredDvds.push(newDvd);
+    const createdDvd = await dvdRepository.save({
+      ...newDvd,
+      dvd_stock: dvdStock,
+    });
+    registeredDvds.push(createdDvd);
   }
 
-  return registeredDvds;
+  return serializedCreatedDvdSchema.validate(registeredDvds, {
+    stripUnknown: true,
+  });
 };
 
 export default dvdCreateService;
