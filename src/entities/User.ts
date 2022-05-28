@@ -31,7 +31,7 @@ export class User {
   @OneToOne(() => Cart, (cart) => cart.user, { eager: true })
   cart: Cart;
 
-  @OneToMany(() => Order, (order) => order.user)
+  @OneToMany(() => Order, (order) => order.user, { eager: true })
   orders: Order[];
 
   comparePwd = async (pwdString: string): Promise<boolean> => {

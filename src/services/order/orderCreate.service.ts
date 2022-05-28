@@ -1,12 +1,10 @@
 import { Request } from "express";
 import {
   cartRepository,
-  dvdRepository,
-  dvdStockRepository,
   orderRepository,
   userRepository,
 } from "../../repositories";
-import { serializedOrderSchema } from "../../schemas/order";
+import { serializedOrderCreateSchema } from "../../schemas/order";
 
 const orderCreateService = async ({ decoded }: Request) => {
   const user = await userRepository.findOne({ email: decoded.email });
@@ -26,7 +24,7 @@ const orderCreateService = async ({ decoded }: Request) => {
   cart.dvds = [];
   await cartRepository.save(cart);
 
-  return serializedOrderSchema.validate(order, { stripUnknown: true });
+  return serializedOrderCreateSchema.validate(order, { stripUnknown: true });
 };
 
 export default orderCreateService;

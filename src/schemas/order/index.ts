@@ -1,3 +1,6 @@
-import { serializedOrderSchema } from "./createOrder.schema";
+import {
+  serializedOrderCreateSchema,
+  serializedOrderListSchema,
+} from "./createOrder.schema";
 
-export { serializedOrderSchema };
+export { serializedOrderCreateSchema, serializedOrderListSchema };

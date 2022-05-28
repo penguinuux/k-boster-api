@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const serializedOrderSchema = yup
+const serializedOrderCreateSchema = yup
   .object()
   .shape({
     order_id: yup.string().required(),
@@ -21,4 +21,17 @@ const serializedOrderSchema = yup
   })
   .required();
 
-export { serializedOrderSchema };
+const serializedOrderListSchema = yup.object().shape({
+  orders: yup
+    .array()
+    .of(
+      yup.object().shape({
+        order_id: yup.string().required(),
+        total: yup.number().required(),
+        created_at: yup.date().required(),
+      })
+    )
+    .required(),
+});
+
+export { serializedOrderCreateSchema, serializedOrderListSchema };

@@ -1,6 +1,10 @@
 import { Router } from "express";
-import { userCreateController, userLoginController } from "../controllers/user";
-import { validateSchema, verifyUserExists } from "../middlewares";
+import {
+  userCreateController,
+  userLoginController,
+  userOrdersListController,
+} from "../controllers/user";
+import { validateSchema, verifyToken, verifyUserExists } from "../middlewares";
 import { verifyCreateAdminUserPermission } from "../middlewares";
 import { createUserSchema, userLoginSchema } from "../schemas/user";
 
@@ -15,6 +19,7 @@ export const userRoutes = () => {
     verifyCreateAdminUserPermission,
     userCreateController
   );
+  routes.get("/orders", verifyToken, userOrdersListController);
 
   return routes;
 };
