@@ -4,6 +4,7 @@ import { Dvd } from "../entities";
 
 interface IDvdRepo {
   save: (dvd: Partial<Dvd>) => Promise<Dvd>;
+  saveMany: (dvd: Partial<Dvd[]>) => Promise<Dvd[]>;
   all: () => Promise<Dvd[]>;
   findOne: (payload: object) => Promise<Dvd>;
 }
@@ -16,6 +17,22 @@ class DvdRepo implements IDvdRepo {
   }
 
   save = async (dvd: Partial<Dvd>) => await this.ormRepo.save(dvd);
+
+  saveMany = async (dvds: Dvd[]) => {
+    const insertedDvds = await this.ormRepo
+      .createQueryBuilder()
+      .insert()
+      .values(dvds)
+      .execute();
+
+    const returnDvds: Dvd[] = [];
+
+    for (let { dvd_id } of insertedDvds.generatedMaps) {
+      returnDvds.push(await this.findOne({ dvd_id }));
+    }
+
+    return returnDvds;
+  };
 
   all = async () => await this.ormRepo.find();
 

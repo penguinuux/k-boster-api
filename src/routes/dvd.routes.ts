@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { dvdCreateController, dvdListController } from "../controllers/dvd";
 import {
   validateSchema,
   verifyAdminPermission,
@@ -13,9 +14,10 @@ export const dvdRoutes = () => {
     "/register",
     validateSchema(createDvdSchema),
     verifyToken,
-    verifyAdminPermission
+    verifyAdminPermission,
+    dvdCreateController
   );
-  routes.get("/");
+  routes.get("/", dvdListController);
 
   return routes;
 };

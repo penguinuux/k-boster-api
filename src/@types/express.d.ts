@@ -1,9 +1,10 @@
 import { User } from "../entities";
+import { IDvdCreate } from "../interfaces";
 
 declare global {
   namespace Express {
     interface Request {
-      validated: User;
+      validated: User | IDvdCreate;
       decoded: Partial<User>;
     }
   }

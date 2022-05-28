@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { User } from "../entities";
 import { userRepository } from "../repositories";
 
 const verifyUserExists = async (
@@ -7,7 +8,7 @@ const verifyUserExists = async (
   next: NextFunction
 ) => {
   const foundUser = await userRepository.findOne({
-    email: req.validated.email,
+    email: (req.validated as User).email,
   });
 
   if (foundUser) {

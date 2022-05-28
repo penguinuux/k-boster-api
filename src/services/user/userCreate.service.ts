@@ -8,9 +8,9 @@ import { serializedCreatedUserSchema } from "../../schemas/user";
 const userCreateService = async ({
   validated,
 }: Request): Promise<AssertsShape<any>> => {
-  validated.password = await hash(validated.password, 10);
+  (validated as User).password = await hash((validated as User).password, 10);
 
-  const user: User = await userRepository.save(validated);
+  const user: User = await userRepository.save(validated as User);
 
   return await serializedCreatedUserSchema.validate(user, {
     stripUnknown: true,
