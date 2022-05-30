@@ -8,4 +8,4 @@ temp/
 *.lock
 package-lock*
 yarn-error.log*
-*.png
+dist/
