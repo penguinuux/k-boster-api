@@ -25,7 +25,7 @@ export class Cart {
   @JoinColumn()
   user: User;
 
-  @ManyToMany(() => Dvd, (dvd) => dvd.carts, { nullable: true })
+  @ManyToMany(() => Dvd, (dvd) => dvd.carts, { eager: true, nullable: true })
   @JoinTable()
   dvds: Dvd[];
 }

@@ -28,10 +28,10 @@ export class User {
   @Column({ default: false })
   is_admin?: boolean;
 
-  @OneToOne(() => Cart, (cart) => cart.user)
+  @OneToOne(() => Cart, (cart) => cart.user, { eager: true })
   cart: Cart;
 
-  @OneToMany(() => Order, (order) => order.user)
+  @OneToMany(() => Order, (order) => order.user, { eager: true })
   orders: Order[];
 
   comparePwd = async (pwdString: string): Promise<boolean> => {
