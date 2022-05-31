@@ -13,7 +13,7 @@ const userLoginService = async ({ validated }: Request): Promise<string> => {
   });
 
   if (!user) {
-    throw new AppError(401, "Invalid credentials.");
+    throw new AppError(403, "Invalid credentials.");
   }
 
   if (!(await user.comparePwd((validated as User).password))) {
