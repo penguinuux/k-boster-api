@@ -155,7 +155,7 @@ Criação de usuário sem todas as chaves obrigatórias.
 }
 ```
 
-[Voltar ao topo](#sumary)
+[Voltar ao topo](#sumário)
 
 ## Rotas Dvd
 
@@ -276,7 +276,7 @@ Tentando criar um dvd sem permissão de admin.
 }
 ```
 
-[Voltar ao topo](#sumary)
+[Voltar ao topo](#sumário)
 
 ## Rotas Buy
 
